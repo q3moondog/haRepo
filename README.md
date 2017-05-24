@@ -1,0 +1,2 @@
+# haRepo
+home automation repository
