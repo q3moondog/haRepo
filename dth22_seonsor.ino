@@ -23,8 +23,8 @@
 #define DHTTYPE DHT22 
 
 // WiFi parameters
-#define WLAN_SSID       "WLAN_SSID"
-#define WLAN_PASS       "WLAN_PASS"
+#define WLAN_SSID       "skwap001"
+#define WLAN_PASS       "*******"
 
 // Adafruit IO
 #define AIO_SERVER      "io.adafruit.com"
