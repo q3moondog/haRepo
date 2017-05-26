@@ -117,7 +117,7 @@ void loop() {
   // Grab the current state of the sensor
   int humidity_data = (int)dht.readHumidity();
   int temperature_data = ((int)dht.readTemperature() * 1.8) + 32;
-  int battlevel_data = ((float)ESP.getVcc()* VCC_ADJ;
+  int battlevel_data = (float)ESP.getVcc()* VCC_ADJ;
 
  // float fahrenheit = (tempurature_data * 1.8) + 32;
 
