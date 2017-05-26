@@ -18,6 +18,9 @@
 #include "Adafruit_MQTT_Client.h"
 #include "DHT.h"
 
+//vcc read-mode
+ADC_MODE(ADC_VCC); 
+
 // DHT 22 sensor
 #define DHTPIN 2
 #define DHTTYPE DHT22 
@@ -31,6 +34,10 @@
 #define AIO_SERVERPORT  1883
 #define AIO_USERNAME    "q3moondog"
 #define AIO_KEY         "***************"
+
+// VCC and Batt info
+#define BATT_WARNING_VOLTAGE 2.4                    // Voltage for Low-Bat warning
+#define VCC_ADJ 1.096
 
 // DHT sensor
 DHT dht(DHTPIN, DHTTYPE, 15);
@@ -64,6 +71,7 @@ Adafruit_MQTT_Publish temperature = Adafruit_MQTT_Publish(&mqtt, AIO_USERNAME "/
 //const char HUMIDITY_FEED[] PROGMEM = AIO_USERNAME "/feeds/humidity";
 //Adafruit_MQTT_Publish humidity = Adafruit_MQTT_Publish(&mqtt, HUMIDITY_FEED);
 Adafruit_MQTT_Publish humidity = Adafruit_MQTT_Publish(&mqtt, AIO_USERNAME "/feeds/humidity");
+Adafruit_MQTT_Publish BattLevel = Adafruit_MQTT_Publish(&mqtt, AIO_USERNAME "/feeds/BattLevel");
 
 /*************************** Sketch Code ************************************/
 
@@ -109,6 +117,7 @@ void loop() {
   // Grab the current state of the sensor
   int humidity_data = (int)dht.readHumidity();
   int temperature_data = ((int)dht.readTemperature() * 1.8) + 32;
+  int battlevel_data = ((float)ESP.getVcc()* VCC_ADJ;
 
  // float fahrenheit = (tempurature_data * 1.8) + 32;
 
@@ -122,6 +131,11 @@ void loop() {
     Serial.println(F("Failed to publish humidity"));
   else
     Serial.println(F("Humidity published!"));
+                        
+  if (! BattLevel.publish(battlevel_data))
+    Serial.println(F("Failed to publish battery level"));
+  else
+    Serial.println(F("Battery level published!"));
 
   // Repeat every 15 minutes
   //delay(900000);
