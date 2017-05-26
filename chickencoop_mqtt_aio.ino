@@ -24,7 +24,7 @@
 
 // WiFi parameters
 #define WLAN_SSID       "skwap001"
-#define WLAN_PASS       "s3mp3rf1"
+#define WLAN_PASS       "******"
 
 // Adafruit IO
 #define AIO_SERVER      "io.adafruit.com"
