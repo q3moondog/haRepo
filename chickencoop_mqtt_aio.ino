@@ -30,7 +30,7 @@
 #define AIO_SERVER      "io.adafruit.com"
 #define AIO_SERVERPORT  1883
 #define AIO_USERNAME    "q3moondog"
-#define AIO_KEY         "b5d86efc4c4a4900802c697e74e48fb9"
+#define AIO_KEY         "***************"
 
 // DHT sensor
 DHT dht(DHTPIN, DHTTYPE, 15);
